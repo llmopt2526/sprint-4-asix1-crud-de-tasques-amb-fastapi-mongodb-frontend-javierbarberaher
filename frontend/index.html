@@ -9,9 +9,8 @@
 
 <div class="container">
     <h1>Gestor de Pel·lícules</h1>
-    
-    <div style="background: #fff9e6; padding: 15px; border: 2px dashed #000; border-radius: 8px; margin-bottom: 20px;">
-        <h3>Afegir Nova Pel·lícula</h3>
+    <div style="padding: 15px; border: 2px dashed #000; border-radius: 8px; margin-bottom: 20px;">
+        <h3>Pujar Nova Pel·lícula</h3>
         <div class="form-group">
             <input type="text" id="titol" placeholder="Títol de la peli">
         </div>
@@ -27,14 +26,42 @@
             <input type="text" id="genere" placeholder="Gènere">
         </div>
         <div class="form-group" style="margin-top:10px">
-            <input type="text" id="usuari" placeholder="El teu nom d'usuari">
+            <input type="text" id="usuari" placeholder="Usuari que la puja">
         </div>
         <button onclick="addMovie()">Guardar Pel·lícula!</button>
     </div>
 
     <hr>
-    <h2>La meva llista</h2>
+    <h2>Llista de pel·licules</h2>
+    <div>
+        <strong>Filtrar per:</strong>
+        <input type="text" id="filterGenere" placeholder="Gènere..." oninput="filterMovies()" style="width: 150px;">    
+        <select id="filterNota" onchange="filterMovies()" style="width: 150px;">
+            <option value="totes">Totes les notes</option>
+            <option value="5">5 estrelles</option>
+            <option value="4">4 estrelles</option>
+            <option value="3">3 estrelles</option>
+            <option value="2">2 estrelles</option>
+            <option value="1">1 estrelles</option>
+        </select>
+        <button onclick="clearFilters()">Netejar</button>
+    </div>
+
     <div id="movieList"></div>
+</div>
+
+<div class="container">
+    <h1>Gestió d'Usuaris</h1>
+    <div class="admin-box">
+        <h3>Registrar Nou Usuari</h3>
+        <div class="form-group">
+            <input type="text" id="new_username" placeholder="Nom d'usuari (ex: joan85)">
+        </div>
+        <div class="form-group">
+            <input type="email" id="new_email" placeholder="Correu electrònic">
+        </div>
+        <button onclick="createUser()">Registrar Usuari</button>
+    </div>
 </div>
 
 <script src="script.js"></script>

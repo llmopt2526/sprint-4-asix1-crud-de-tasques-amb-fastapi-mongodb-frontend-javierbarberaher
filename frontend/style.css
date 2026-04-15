@@ -1,52 +1,98 @@
 body { 
-    font-family: "Comic Sans MS", "Comic Sans", cursive; 
-    background: #fdf6e3; 
-    margin: 40px; 
+    font-family: "Arial"; 
+    font-size: 1.1rem;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #222;
+    background: #fdfdfd; 
+    margin: 0; 
+    padding: 20px 0;
 }
 
 .container { 
-    max-width: 800px; 
-    margin: auto; 
-    background: white; 
-    padding: 20px; 
-    border: 3px solid #000;
-    border-radius: 15px; 
-    box-shadow: 10px 10px 0px rgba(0,0,0,0.1); 
+    position: relative;
+    width: 85%;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
+    box-sizing: border-box;
+    background: white;
+    border: 2px solid #222; 
+    border-radius: 8px;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
 }
 
-.form-group { margin-bottom: 15px; }
+h1 { font-size: 2.2rem; margin-bottom: 1rem; color: #222; }
+h2 { font-size: 1.8rem; margin-bottom: 0.8rem; color: #333; }
+h3 { font-size: 1.4rem; margin-bottom: 0.6rem; color: #444; }
 
-label { display: block; margin-bottom: 5px; font-weight: bold; }
-
-input, select, textarea { 
-    font-family: "Comic Sans MS", cursive;
-    width: 100%; 
-    padding: 8px; 
-    box-sizing: border-box; 
-    border: 2px solid #333; 
-    border-radius: 8px; 
-}
-
-button { 
-    font-family: "Comic Sans MS", cursive;
-    background: #ffcc00; 
-    color: black; 
-    border: 2px solid #000; 
-    padding: 10px 15px; 
-    cursor: pointer; 
-    border-radius: 8px; 
+h1, h2, h3 { 
     font-weight: bold;
+    letter-spacing: -0.05rem;
+    margin-top: 0;
 }
 
-button:hover { background: #ffaa00; }
+.form-group {
+    margin-bottom: 12px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+    height: 36px;
+    padding: 5px 10px; 
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+textarea {
+    min-height: 70px;
+    padding: 8px 10px;
+    resize: vertical;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #000;
+    outline: none;
+}
+
+button {
+    display: inline-block;
+    height: 36px;
+    padding: 0 20px;
+    color: #222;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 34px;
+    letter-spacing: .05rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 2px solid #222; /* Borde oscuro */
+    cursor: pointer;
+    box-sizing: border-box;
+    font-family: inherit;
+    margin-top: 5px;
+}
 
 .movie-card { 
-    border: 2px solid #333; 
-    background: #fff; 
-    padding: 15px; 
-    margin-top: 15px; 
-    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 2px solid #333; /* Borde oscuro para la tarjeta */
+    border-radius: 6px;
     position: relative; 
+    background: #fff;
 }
 
 .delete-btn { 
@@ -54,15 +100,41 @@ button:hover { background: #ffaa00; }
     right: 10px; 
     top: 10px; 
     background: #ff4d4d; 
-    font-size: 12px; 
     color: white;
+    border: 2px solid #b30000;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    line-height: 24px;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .tag { 
     display: inline-block; 
-    background: #d1f7ff; 
-    padding: 2px 8px; 
+    background: #e1e1e1; 
     border: 1px solid #333;
-    border-radius: 10px; 
-    font-size: 0.8em; 
+    padding: 1px 8px; 
+    border-radius: 3px; 
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.admin-box, .filter-box {
+    padding: 15px;
+    background: #f9f9f9;
+    border: 2px solid #333; 
+    border-radius: 6px;
+}
+
+.movie-card small {
+    font-size: 0.85rem;
+    color: #444;
+}
+
+hr {
+    border: 0;
+    border-top: 2px solid #333;
+    margin: 20px 0;
 }
