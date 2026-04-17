@@ -1,103 +1,58 @@
-### Estructura del projecte
+# Sprint 4: Gestor de Pel·lícules
+Fer per Javier Barberà
 
-A diferència d’altres projectes més complexos, en aquest cas **treballareu amb una estructura simple**, igual que a l’exemple oficial. Tot el backend s’ubica en un únic fitxer (`app.py`), amb l’objectiu de centrar-se en **aprendre CRUD amb FastAPI i MongoDB** abans de **modularitzar el codi**.
+Aquest projecte consisteix a fer una aplicació per a la gestió d'1 dels 5 dominis que hi havia a l'enunciat. En aquest cas, és el domini d'un gestor de pel·lícules. Utilitzarem una arquitectura que utilitzarà un front-end (pàgina web) i back-end (api) per comunicar-nos amb una database al núvol.
+Software utilitzat: Python11, FastAPI, MongoDB, Skeleton CSS.
 
-El projecte ha de mantenir una **estructura com aquesta**:
+---
 
+# Estructura del projecte
+```text
+.
+├── Comprovació del frontend.mp4   # Vídeo que demostra el funcionament
+├── backend/
+│   ├── app.py                 # Lògica del servidor FastAPI
+│   └── requirements.txt       # Dependències del servidor FastAPI
+├── frontend/
+│   ├── index.html             # Interfície d'usuari
+│   ├── style.css              # L'estil visual de la pàgina
+│   ├── style_original.css     # L'estil original del front-end, sense el backbone de skeleton
+│   └── app.js                 # Lògica de consum de l'API (Fetch)
+└── tests/
+    └── postman_API_tests.json  # Tests de l'API per a Postman
 ```
-project/
-├── README.md
-├── backend/                # FastAPI + MongoDB
-│   ├── app.py              # Fitxer principal (tota la lògica)
-│   └── requirements.txt    # Dependències
-│
-├── frontend/           # Interfície web
-│   ├── index.html
-│   ├── style.css
-│   └── app.js
-│
-└── tests/              # Tests amb Postman
-    └── Postman_API_tests.json
+
+---
+
+# Passos per a la instal·lació
+El primer prerequisit seria tenir Python, jo tinc la versió 11 i pel que he comprovat és l'única que funciona, així que recomano instal·lar aquesta versió.
+
+Una vegada tens Python 11, ves a la PowerShell i ubicat a la carpeta real del projecte per crear l'entorn virtual de Python. Una vegada allí, executa:
+
+```text
+py -m venv venv
+
+.\venv\Scripts\Activate
 ```
-#### Fitxer `app.py`
 
-En projectes més complexos, es separaria, per exemple, la connexió a MongoDB en un fitxer a banda, anomenat `database.py`; i, els models, en `models.py`.
-En el nostre cas, tot el backend l'implementarem dins del fitxer `app.py` per simplificar.
-
-Tot i això, és **molt recomanable**:
-- Afegir **grans comentaris per separar lògica** de connexió, models i endpoints.
-- **Documentar clarament cada secció** per facilitar la lectura i localització d’errors.
-
-Un bon exemple seria aquest:
-```python
-import os
-from typing import Optional, List
-
-from fastapi import FastAPI, Body, HTTPException, status
-from fastapi.responses import Response
-from pydantic import ConfigDict, BaseModel, Field, EmailStr
-from pydantic.functional_validators import BeforeValidator
-from typing_extensions import Annotated
-
-from bson import ObjectId
-import asyncio
-from pymongo import AsyncMongoClient
-from pymongo import ReturnDocument
-
-# ------------------------------------------------------------------------ #
-#                         Inicialització de l'aplicació                    #
-# ------------------------------------------------------------------------ #
-# Creació de la instància FastAPI amb informació bàsica de l'API
-app = FastAPI(
-    title="Student Course API",
-    summary="Exemple d'API REST amb FastAPI i MongoDB per gestionar informació d'estudiants",
-)
-
-# ------------------------------------------------------------------------ #
-#                   Configuració de la connexió amb MongoDB               #
-# ------------------------------------------------------------------------ #
-# Creem el client de MongoDB utilitzant la URL de connexió emmagatzemada
-# a les variables d'entorn. Això evita incloure credencials dins del codi.
-client = AsyncMongoClient(os.environ["MONGODB_URL"])
-
-# Selecció de la base de dades i de la col·lecció
-db = client.college
-student_collection = db.get_collection("students")
-
-# Els documents de MongoDB tenen `_id` de tipus ObjectId.
-# Aquí definim PyObjectId com un string serialitzable per JSON,
-# que serà utilitzat als models Pydantic.
-PyObjectId = Annotated[str, BeforeValidator(str)]
-
-# ------------------------------------------------------------------------ #
-#                            Definició dels models                        #
-# ------------------------------------------------------------------------ #
-class StudentModel(BaseModel):
-    """
-    Model que representa un estudiant.
-    Conté tots els camps obligatoris i opcional `_id`.
-    """
-    # Clau primària de l'estudiant. 
-    # MongoDB utilitza `_id`, però l'API exposa aquest camp com `id`.
-    id: Optional[PyObjectId] = Field(alias="_id", default=None)
-    
-    # Camps obligatoris de l'estudiant
-    name: str = Field(...)
-    email: EmailStr = Field(...)
-    course: str = Field(...)
-    gpa: float = Field(..., le=4.0)
-
-    # Configuració addicional del model Pydantic
-    model_config = ConfigDict(
-        populate_by_name=True,  # Permet utilitzar alias al serialitzar/deserialitzar
-        arbitrary_types_allowed=True,  # Permet tipus personalitzats com ObjectId
-        json_schema_extra={
-            "example": {
-                "name": "Jane Doe",
-                "email": "jdoe@example.com",
-                "course": "Experiments, Science, and Fashion in Nanophotonics",
-                "gpa": 3.0,
-            }
-        },
-    )
+Una vegada activat l'entorn, passem a instal·lar les dependències.
+```text
+pip install -r backend/requirements.txt
 ```
+
+Ara ja ho tindríem tot preparat per a posar-ho en marxa, així que anirem dintre de la carpeta de back-end i l'executarem l'api amb aquestes comendes:
+```text
+cd backend
+
+uvicorn app:app --reload
+```
+
+Si tot ha anat bé, quan obris el index.html podràs utilitzar-ho, com es mostra al vídeo de prova. En cas que uvicorn o altra dependència doni problemes, prova d'instal·lar-lo de manera manual:
+```text
+pip install fastapi uvicorn pymongo pydantic pydantic-settings email-validator certifi
+```
+
+---
+
+# Postman
+A la carpeta test hi ha un JSON per importar una col·lecció que conté un test CRUD de l'api, està configurat perquè no calgui canviar la id dels elements cada vegada als PATCH i DELETE.

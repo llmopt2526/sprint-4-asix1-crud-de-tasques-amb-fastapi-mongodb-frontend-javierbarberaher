@@ -1,9 +1,71 @@
-<!doctype html>
-<html>
-  <head>
-    <title>This is the title of the webpage!</title>
-  </head>
-  <body>
-    <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
-  </body>
+<!DOCTYPE html>
+<!-- Definim el llenguatge de la pàgina i el títol -->
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor de Pelis</title>
+    <!-- Definim l'arxiu de CSS, cambiar a style_original.css per veure el css original, sense backbone. -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Gestor de Pel·lícules</h1>
+    <div style="padding: 15px; border: 2px dashed #000; border-radius: 8px; margin-bottom: 20px;">
+        <h3>Pujar Nova Pel·lícula</h3>
+        <div class="form-group">
+            <input type="text" id="titol" placeholder="Títol de la peli">
+        </div>
+        <div class="form-group">
+            <textarea id="desc" placeholder="Descripció"></textarea>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <select id="estat">
+                <option value="pendent de veure">Pendent</option>
+                <option value="vista">Vista</option>
+            </select>
+            <input type="number" id="puntuacio" placeholder="Nota (1-5)" min="1" max="5">
+            <input type="text" id="genere" placeholder="Gènere">
+        </div>
+        <div class="form-group" style="margin-top:10px">
+            <input type="text" id="usuari" placeholder="Usuari que la puja">
+        </div>
+        <button onclick="addMovie()">Guardar Pel·lícula!</button>
+    </div>
+
+    <hr>
+    <h2>Llista de pel·licules</h2>
+    <div>
+        <strong>Filtrar per:</strong>
+        <input type="text" id="filterGenere" placeholder="Gènere..." oninput="filterMovies()" style="width: 150px;">    
+        <select id="filterNota" onchange="filterMovies()" style="width: 150px;">
+            <option value="totes">Totes les notes</option>
+            <option value="5">5 estrelles</option>
+            <option value="4">4 estrelles</option>
+            <option value="3">3 estrelles</option>
+            <option value="2">2 estrelles</option>
+            <option value="1">1 estrelles</option>
+        </select>
+        <button onclick="clearFilters()">Netejar</button>
+    </div>
+
+    <div id="movieList"></div>
+</div>
+
+<div class="container">
+    <h1>Gestió d'Usuaris</h1>
+    <div class="admin-box">
+        <h3>Registrar Nou Usuari</h3>
+        <div class="form-group">
+            <input type="text" id="new_username" placeholder="Nom d'usuari (ex: joan85)">
+        </div>
+        <div class="form-group">
+            <input type="email" id="new_email" placeholder="Correu electrònic">
+        </div>
+        <button onclick="createUser()">Registrar Usuari</button>
+    </div>
+</div>
+<!-- Definim el arxiu de javascipt en el que es troven els scripts. -->
+<script src="script.js"></script>
+</body>
 </html>

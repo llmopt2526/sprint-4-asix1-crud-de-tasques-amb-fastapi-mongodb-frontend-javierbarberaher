@@ -1,0 +1,140 @@
+body { 
+    font-family: "Arial"; 
+    font-size: 1.1rem;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #222;
+    background: #fdfdfd; 
+    margin: 0; 
+    padding: 20px 0;
+}
+
+.container { 
+    position: relative;
+    width: 85%;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
+    box-sizing: border-box;
+    background: white;
+    border: 2px solid #222; 
+    border-radius: 8px;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+}
+
+h1 { font-size: 2.2rem; margin-bottom: 1rem; color: #222; }
+h2 { font-size: 1.8rem; margin-bottom: 0.8rem; color: #333; }
+h3 { font-size: 1.4rem; margin-bottom: 0.6rem; color: #444; }
+
+h1, h2, h3 { 
+    font-weight: bold;
+    letter-spacing: -0.05rem;
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+    height: 36px;
+    padding: 5px 10px; 
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+textarea {
+    min-height: 70px;
+    padding: 8px 10px;
+    resize: vertical;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #000;
+    outline: none;
+}
+
+button {
+    display: inline-block;
+    height: 36px;
+    padding: 0 20px;
+    color: #222;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 34px;
+    letter-spacing: .05rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 2px solid #222; /* Borde oscuro */
+    cursor: pointer;
+    box-sizing: border-box;
+    font-family: inherit;
+    margin-top: 5px;
+}
+
+.movie-card { 
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 2px solid #333; /* Borde oscuro para la tarjeta */
+    border-radius: 6px;
+    position: relative; 
+    background: #fff;
+}
+
+.delete-btn { 
+    position: absolute; 
+    right: 10px; 
+    top: 10px; 
+    background: #ff4d4d; 
+    color: white;
+    border: 2px solid #b30000;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    line-height: 24px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.tag { 
+    display: inline-block; 
+    background: #e1e1e1; 
+    border: 1px solid #333;
+    padding: 1px 8px; 
+    border-radius: 3px; 
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.admin-box, .filter-box {
+    padding: 15px;
+    background: #f9f9f9;
+    border: 2px solid #333; 
+    border-radius: 6px;
+}
+
+.movie-card small {
+    font-size: 0.85rem;
+    color: #444;
+}
+
+hr {
+    border: 0;
+    border-top: 2px solid #333;
+    margin: 20px 0;
+}

@@ -1,0 +1,152 @@
+{
+  "info": {
+    "_postman_id": "3bb54427-d183-4f74-b9f8-98c4ee116e9f",
+    "name": "api crud",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51539735",
+    "_collection_link": "https://go.postman.co/collection/51539735-3bb54427-d183-4f74-b9f8-98c4ee116e9f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "get",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/movies",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "movies"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "post",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const resposta = pm.response.json();\r",
+              "\r",
+              "if (pm.response.code === 200 || pm.response.code === 201) {\r",
+              "    if (resposta._id) {\r",
+              "        // 3. Guardem l'ID en una variable de col·lecció anomenada 'peli_id'\r",
+              "        pm.collectionVariables.set(\"peli_id\", resposta._id);\r",
+              "        console.log(\"ID guardada correctament: \" + resposta._id);\r",
+              "    }\r",
+              "}"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"titol\": \"string\",\r\n  \"descripcio\": \"string\",\r\n  \"estat\": \"pendent de veure\",\r\n  \"puntuacio\": 4,\r\n  \"genere\": \"string\",\r\n  \"usuari\": \"javier\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/movies/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "movies",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "patch",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/movies/{{peli_id}}/toggle-status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "movies",
+            "{{peli_id}}",
+            "toggle-status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"titol\": \"string\",\r\n  \"descripcio\": \"string\",\r\n  \"estat\": \"pendent de veure\",\r\n  \"puntuacio\": 4,\r\n  \"genere\": \"string\",\r\n  \"usuari\": \"javier\"\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/movies/{{peli_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "movies",
+            "{{peli_id}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "peli_id",
+      "value": ""
+    }
+  ]
+}
