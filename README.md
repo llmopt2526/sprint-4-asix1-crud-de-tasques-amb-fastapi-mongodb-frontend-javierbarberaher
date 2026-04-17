@@ -1,4 +1,4 @@
-# Sprint 4: Gestor de Llibres
+# Sprint 4: Gestor de Pel·lícules
 Fer per Javier Barberà
 
 Aquest projecte consisteix a fer una aplicació per a la gestió d'1 dels 5 dominis que hi havia a l'enunciat. En aquest cas, és el domini d'un gestor de pel·lícules. Utilitzarem una arquitectura que utilitzarà un front-end (pàgina web) i back-end (api) per comunicar-nos amb una database al núvol.
